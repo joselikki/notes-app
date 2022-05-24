@@ -5,6 +5,13 @@ const yargs = require('yargs');
 //Customize yargs version
 yargs.version('1.1.0');
 
+//color formats
+
+const green = chalk.green
+const blue = chalk.blue
+const red = chalk.red
+const yellow = chalk.yellow
+
 //Create add command
 yargs.command({
     command: 'add',
@@ -22,8 +29,8 @@ yargs.command({
         }
     },
     handler: function(argv){
-        console.log('**** NEW NOTE ****');
-        console.log(chalk.green(`Title: ${argv.title}`));
+        console.log( green.inverse.bold( '**** NEW NOTE ****'));
+        console.log(green(`Title: ${argv.title}`));
         console.log(`Body: ${argv.body}`);
     }
 });
