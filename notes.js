@@ -3,9 +3,9 @@ const chalk = require('chalk');
 
 //chalk color formats
 const green = chalk.green
-const blue = chalk.blue
 const red = chalk.red
 const yellow = chalk.yellow
+const cyan = chalk.cyan
 
 const getNotes = () =>{
     return "Your notes....!"
@@ -30,7 +30,7 @@ const addNote = (title, body) =>{
 }
 
 // removing notes
-const removeNote = (title) =>{
+const removeNote = title =>{
     const notes = loadNotes()
     const filteredNotes = notes.filter(note => note.title !== title)
 
@@ -43,8 +43,21 @@ const removeNote = (title) =>{
     }
 }
 
+//Lisiting notes
+
+const listNotes = () =>{
+    const notes = loadNotes()
+    if (notes.length > 0){
+        notes.map(note => {
+            console.log(cyan(`- ${note.title}`))
+        })
+    }else{
+        console.log("There isn't any note!")
+    }
+}
+
 // Saving notes
-const saveNotes = (notes) =>{
+const saveNotes = notes =>{
     const dataJSON = JSON.stringify(notes)
     fs.writeFile('notes.json', dataJSON, err =>{
         if (err) throw err;
@@ -67,4 +80,5 @@ module.exports = {
     getNotes: getNotes,
     addNote: addNote,
     removeNote: removeNote,
+    listNotes: listNotes,
 }
