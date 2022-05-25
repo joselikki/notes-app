@@ -48,8 +48,9 @@ const removeNote = title =>{
 const listNotes = () =>{
     const notes = loadNotes()
     if (notes.length > 0){
+        console.log(green.inverse("Your Notes:"))
         notes.map(note => {
-            console.log(cyan(`- ${note.title}`))
+            console.log(cyan(`${note.title}`))
         })
     }else{
         console.log("There isn't any note!")
