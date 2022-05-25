@@ -4,15 +4,14 @@
   "description": "Notes app",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "chalk": "2.4.1",
     "validator": "13.7.0",
-    "yargs": "^17.5.1"
+    "yargs": "17.5.1"
   },
   "bin": {
     "note": "./app.js"
