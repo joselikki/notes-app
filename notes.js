@@ -1,8 +1,7 @@
 const fs = require('fs')
 const chalk = require('chalk');
 
-//color formats
-
+//chalk color formats
 const green = chalk.green
 const blue = chalk.blue
 const red = chalk.red
@@ -12,6 +11,7 @@ const getNotes = () =>{
     return "Your notes....!"
 }
 
+// Adding notes
 const addNote = (title, body) =>{
     const notes = loadNotes()
     const duplicates = notes.filter(note => note.title === title)
@@ -19,26 +19,39 @@ const addNote = (title, body) =>{
     if(duplicates.length === 0){
         notes.push({
             title: title,
-            body: body
+            body: body,
         })
         saveNotes(notes, title)
+        console.log(green(`Note "${title}" saved successfully!`))
 
     } else{
         console.log(red(`Note "${title}" already exists! \nNot added`))
     } 
 }
 
-const saveNotes = (notes, title) =>{
+// removing notes
+const removeNote = (title) =>{
+    const notes = loadNotes()
+    const filteredNotes = notes.filter(note => note.title !== title)
+
+    if (notes.length === filteredNotes.length){
+        console.log(red.inverse(`Note "${title}" does not exist!`))
+
+    }else {
+        saveNotes(filteredNotes)
+        console.log(yellow(`Note "${title}" has been removed!`))
+    }
+}
+
+// Saving notes
+const saveNotes = (notes) =>{
     const dataJSON = JSON.stringify(notes)
     fs.writeFile('notes.json', dataJSON, err =>{
         if (err) throw err;
-        else{
-            console.log( green( `Note "${title}" saved successfully!`))
-        }
     })
 }
 
-
+// Loading notes
 const loadNotes = () => {
     try {
         const dataBuffer = fs.readFileSync('notes.json')
@@ -52,5 +65,6 @@ const loadNotes = () => {
 
 module.exports = {
     getNotes: getNotes,
-    addNote: addNote
+    addNote: addNote,
+    removeNote: removeNote,
 }
