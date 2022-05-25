@@ -1,3 +1,0 @@
-Hello my name is Jose!
-This is a new line of data at the end.
-This is a new line of data at the end.
