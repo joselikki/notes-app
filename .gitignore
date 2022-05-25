@@ -27,6 +27,10 @@ lib-cov
 coverage
 *.lcov
 
+
+#Custom
+notes.json
+
 # nyc test coverage
 .nyc_output
 
