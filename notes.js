@@ -7,10 +7,6 @@ const red = chalk.red
 const yellow = chalk.yellow
 const cyan = chalk.cyan
 
-const getNotes = () =>{
-    return "Your notes....!"
-}
-
 // Adding notes
 const addNote = (title, body) =>{
     const notes = loadNotes()
@@ -44,7 +40,6 @@ const removeNote = title =>{
 }
 
 //Lisiting notes
-
 const listNotes = () =>{
     const notes = loadNotes()
     if (notes.length > 0){
@@ -54,6 +49,19 @@ const listNotes = () =>{
         })
     }else{
         console.log("There isn't any note!")
+    }
+}
+
+//reading note
+const readNote = (title) => {
+    const notes = loadNotes()
+    const noteToRead = notes.find(note => note.title === title)
+
+    if (noteToRead){
+        console.log(green(`Note: ${noteToRead.title}`))
+        console.log(cyan(noteToRead.body))
+    } else {
+        console.log(red(`Note "${title}" does not exist!`))
     }
 }
 
@@ -74,12 +82,11 @@ const loadNotes = () => {
     }catch(err){
         return []
     }
-
 }
 
 module.exports = {
-    getNotes: getNotes,
     addNote: addNote,
     removeNote: removeNote,
     listNotes: listNotes,
+    readNote: readNote
 }
