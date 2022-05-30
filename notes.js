@@ -1,5 +1,6 @@
 const fs = require('fs')
 const chalk = require('chalk');
+const path = require('path')
 
 //chalk color formats
 const green = chalk.green
@@ -68,7 +69,7 @@ const readNote = (title) => {
 // Saving notes
 const saveNotes = notes =>{
     const dataJSON = JSON.stringify(notes)
-    fs.writeFile('notes.json', dataJSON, err =>{
+    fs.writeFile( path.join(__dirname, 'notes.json'), dataJSON, err =>{
         if (err) throw err;
     })
 }
@@ -76,7 +77,7 @@ const saveNotes = notes =>{
 // Loading notes
 const loadNotes = () => {
     try {
-        const dataBuffer = fs.readFileSync('notes.json')
+        const dataBuffer = fs.readFileSync(path.join(__dirname, 'notes.json'))
         const dataJSON = dataBuffer.toString()
         return JSON.parse(dataJSON)
     }catch(err){
