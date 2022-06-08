@@ -3,10 +3,7 @@ const chalk = require('chalk');
 const path = require('path')
 
 const readline = require("readline");
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+
 
 //chalk color formats
 const green = chalk.green
@@ -97,20 +94,30 @@ const editNote = async (title) => {
 
     const notes = loadNotes()
     const noteToEdit = notes.find(note => note.title == title)
+    const index = notes.findIndex(note => note.title == title)
 
     if (noteToEdit){
-        console.log(`Title: ${noteToEdit.title}`)
         console.log(`Body: ${noteToEdit.body}`)
         getUserInput(data => {
-            console.log("  ")
-            console.log(noteToEdit.body + "\n" + data)
+
+            notes[index].body = noteToEdit.body + "\n" + data
+            saveNotes(notes)
+            console.log(green(`Note "${title}" has been updated successfully!`))
+
         } )
+
+
     }else {
         console.log(red(`Note "${title}" does not exist!`))
     }
 }
 
 const getUserInput = (callback) => {
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
     rl.question("Insert aditional text: ", (data) => {
         rl.close();
         callback(data)
