@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 
-const notes = require('./notes.js');
-const yargs = require('yargs');
-
+const notes = require('./notes.js')
+const yargs = require('yargs')
 
 //Create add command
 yargs.command({
@@ -18,12 +17,12 @@ yargs.command({
             describe: 'Note body',
             demandOption: true,
             type: 'string',
-        }
+        },
     },
     handler: (argv) => {
         notes.addNote(argv.title, argv.body)
-    }
-});
+    },
+})
 
 //Create remove command
 yargs.command({
@@ -34,11 +33,11 @@ yargs.command({
             describe: 'Note title',
             demandOption: true,
             type: 'string',
-        }
+        },
     },
     handler: (argv) => {
         notes.removeNote(argv.title)
-    }
+    },
 })
 
 //Create read command
@@ -50,13 +49,12 @@ yargs.command({
             describe: 'Note title',
             demandOption: true,
             type: 'string',
-        }
+        },
     },
     handler: (argv) => {
         notes.readNote(argv.title)
-    }
+    },
 })
-
 
 //Edit note commnad
 
@@ -68,11 +66,11 @@ yargs.command({
             describe: 'Note title',
             demandOption: true,
             type: 'string',
-        }
+        },
     },
     handler: (argv) => {
         notes.editNote(argv.title)
-    }
+    },
 })
 
 //create list command
@@ -81,7 +79,7 @@ yargs.command({
     describe: 'List all the notes',
     handler: () => {
         notes.listNotes()
-    }
+    },
 })
 
 yargs.parse()
