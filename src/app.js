@@ -3,20 +3,24 @@
 const notes = require('./notes.js')
 const yargs = require('yargs')
 
+let title = {
+    describe: 'Note title',
+    demandOption: true,
+    type: 'string',
+    alias: 't',
+}
+
 //Create add command
 yargs.command({
     command: 'add',
     describe: 'Add a new note',
     builder: {
-        title: {
-            describe: 'Note title',
-            demandOption: true,
-            type: 'string',
-        },
+        title: title,
         body: {
             describe: 'Note body',
             demandOption: true,
             type: 'string',
+            alias: 'b',
         },
     },
     handler: (argv) => {
@@ -29,11 +33,7 @@ yargs.command({
     command: 'remove',
     describe: 'Remove a note',
     builder: {
-        title: {
-            describe: 'Note title',
-            demandOption: true,
-            type: 'string',
-        },
+        title: title,
     },
     handler: (argv) => {
         notes.removeNote(argv.title)
@@ -45,11 +45,7 @@ yargs.command({
     command: 'read',
     describe: 'Read a note',
     builder: {
-        title: {
-            describe: 'Note title',
-            demandOption: true,
-            type: 'string',
-        },
+        title: title,
     },
     handler: (argv) => {
         notes.readNote(argv.title)
@@ -61,15 +57,27 @@ yargs.command({
 yargs.command({
     command: 'edit',
     describe: 'Edit a note',
+    builder: title,
+    handler: (argv) => {
+        notes.editNote(argv.title)
+    },
+})
+
+//Rename command
+yargs.command({
+    command: 'rename',
+    describe: 'Rename a note',
     builder: {
-        title: {
-            describe: 'Note title',
+        title: title,
+        new: {
+            describe: 'New title',
             demandOption: true,
             type: 'string',
+            alias: 'n',
         },
     },
     handler: (argv) => {
-        notes.editNote(argv.title)
+        console.log(argv.title, argv.new)
     },
 })
 
