@@ -77,7 +77,7 @@ yargs.command({
         },
     },
     handler: (argv) => {
-        console.log(argv.title, argv.new)
+        notes.renamingNote(argv.title, argv.new)
     },
 })
 

@@ -74,6 +74,25 @@ const saveNotes = (notes) => {
     })
 }
 
+const renamingNote = (title, newTitle) => {
+    let found = false
+    const notes = loadNotes()
+    for (let i = 0; i < notes.length; i++) {
+        if (notes[i].title === title) {
+            notes[i].title = newTitle
+            saveNotes(notes)
+            found = true
+            console.log(
+                green(`Note "${title}" has been renamed to "${newTitle}"`)
+            )
+            break
+        }
+    }
+    if (!found) {
+        console.log(red(`Note "${title}" does not exist!`))
+    }
+}
+
 // Loading notes
 const loadNotes = () => {
     try {
@@ -123,4 +142,5 @@ module.exports = {
     listNotes,
     readNote,
     editNote,
+    renamingNote,
 }
