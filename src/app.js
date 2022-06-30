@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#! /usr/bin/env node
 
 const notes = require('./notes.js')
 const yargs = require('yargs')

@@ -68,7 +68,7 @@ $ note remove --title="<note title>"
 ### Renaming a note
 
 ```sh
-$ note rename --title=<note title> --new=<new note title>
+$ note rename --title="<note title>" --new="<new note title>"
 
 # Options
 # title: -t, --title
@@ -78,7 +78,7 @@ $ note rename --title=<note title> --new=<new note title>
 ### Editing a note
 
 ```sh
-$ note edit --title=<note title>
+$ note edit --title="<note title>"
 
 #You will be asked for new data
 #Insert new text and hit enter
