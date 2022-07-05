@@ -57,7 +57,9 @@ yargs.command({
 yargs.command({
     command: 'edit',
     describe: 'Edit a note',
-    builder: title,
+    builder: {
+        title: title,
+    },
     handler: (argv) => {
         notes.editNote(argv.title)
     },
@@ -77,7 +79,7 @@ yargs.command({
         },
     },
     handler: (argv) => {
-        notes.renamingNote(argv.title, argv.new)
+        notes.reNote(argv.title, argv.new)
     },
 })
 

@@ -75,22 +75,16 @@ const saveNotes = (notes) => {
 }
 
 const renamingNote = (title, newTitle) => {
-    let found = false
     const notes = loadNotes()
-    for (let i = 0; i < notes.length; i++) {
-        if (notes[i].title === title) {
-            notes[i].title = newTitle
-            saveNotes(notes)
-            found = true
-            console.log(
-                green(`Note "${title}" has been renamed to "${newTitle}"`)
-            )
-            break
-        }
-    }
-    if (!found) {
+    const noteIndex = notes.findIndex((note) => note.title === title)
+
+    if (noteIndex) {
+        notes[noteIndex].title = newTitle
+        console.log(green(`Note "${title}" has been renamed to "${newTitle}"`))
+    } else {
         console.log(red(`Note "${title}" does not exist!`))
     }
+    saveNotes(notes)
 }
 
 // Loading notes
@@ -113,7 +107,7 @@ const editNote = async (title) => {
     const index = notes.findIndex((note) => note.title == title)
 
     if (noteToEdit) {
-        console.log(`Body: ${noteToEdit.body}`)
+        console.log(`Body: ${noteToEdit.body} \n`)
         getUserInput((data) => {
             notes[index].body = noteToEdit.body + '\n' + data
             saveNotes(notes)
