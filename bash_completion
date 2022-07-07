@@ -1,0 +1,5 @@
+#!/user/bin/env bash
+
+#Bash completion for notes app
+
+complete -W "add create edit list read remove rename" note
