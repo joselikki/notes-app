@@ -2,4 +2,13 @@
 
 #Bash completion for notes app
 
-complete -W "add create edit list read remove rename" note
+if ! command -v note &> /dev/null; then
+    return
+fi
+
+_note(){
+    COMPREPLY=($(compgen -W "add create edit list read remove rename" "${COMP_WORDS[1]}"))
+}
+
+
+complete -F _note note
