@@ -79,7 +79,7 @@ yargs.command({
         },
     },
     handler: (argv) => {
-        notes.reNote(argv.title, argv.new)
+        notes.renamingNote(argv.title, argv.new)
     },
 })
 
