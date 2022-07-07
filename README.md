@@ -15,6 +15,22 @@ $ cd notes-app
 $ npm install -g .
 ```
 
+<br>
+
+### To activate the auto completion functionality add the following lines to your `~/.bashrc` file.
+
+<br>
+
+```sh
+export NOTE_DIR="$HOME/<path-notes-app>"
+#modify this line according to the path where the repository was downloaded
+
+[ -s "$NOTE_DIR/bash_completion" ] && \. "$NOTE_DIR/bash_completion"
+```
+
+Once this configuration ha been done you can use `note <command> <tab>` to auto complete commands.
+<br>
+
 # Usage
 
 Once you installed the notes-app, you can verify it's working by running:
