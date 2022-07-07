@@ -17,7 +17,7 @@ $ npm install -g .
 
 <br>
 
-### To activate the auto completion functionality add the following lines to your `~/.bashrc` file.
+To activate the auto completion functionality add the following lines to your `.bashrc` file.
 
 <br>
 
