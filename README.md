@@ -12,6 +12,7 @@ Made with Node.js
 ```sh
 $ git clone https://github.com/joselikki/notes-app.git
 $ cd notes-app
+$ npm install 
 $ npm install -g .
 ```
 
