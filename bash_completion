@@ -7,7 +7,7 @@ if ! command -v note &> /dev/null; then
 fi
 
 _note(){
-    COMPREPLY=($(compgen -W "add create edit list read remove rename" "${COMP_WORDS[1]}"))
+    COMPREPLY=($(compgen -W "add edit list read remove rename" "${COMP_WORDS[1]}"))
 }
 
 
