@@ -21,9 +21,9 @@ const addNote = (title, body) => {
             body: body,
         })
         saveNotes(notes)
-        console.log(green(`Note "${title}" saved successfully!`))
+        console.log(green.bold(`Note "${title}" saved successfully!`))
     } else {
-        console.log(red(`Note "${title}" already exists! \nNot added`))
+        console.log(red.bold(`Note "${title}" already exists! \nNot added`))
     }
 }
 
@@ -33,7 +33,7 @@ const removeNote = (title) => {
     const filteredNotes = notes.filter((note) => note.title !== title)
 
     if (notes.length === filteredNotes.length) {
-        console.log(red.inverse(`Note "${title}" does not exist!`))
+        console.log(red.bold(`Note "${title}" does not exist!`))
     } else {
         saveNotes(filteredNotes)
         console.log(yellow(`Note "${title}" has been removed!`))
@@ -44,9 +44,11 @@ const removeNote = (title) => {
 const listNotes = () => {
     const notes = loadNotes()
     if (notes.length > 0) {
-        console.log(green.inverse('Your Notes:'))
+        console.log(green.bold('Your Notes:'))
+        let idx = 1
         notes.map((note) => {
-            console.log(cyan(`${note.title}`))
+            console.log(cyan(`${idx}. ${note.title}`))
+            idx += 1
         })
     } else {
         console.log("There isn't any note!")
@@ -59,7 +61,7 @@ const readNote = (title) => {
     const noteToRead = notes.find((note) => note.title === title)
 
     if (noteToRead) {
-        console.log(green(`Note: ${noteToRead.title}`))
+        console.log(green.bold(`Note: ${noteToRead.title}`))
         console.log(cyan(noteToRead.body))
     } else {
         console.log(red(`Note "${title}" does not exist!`))
